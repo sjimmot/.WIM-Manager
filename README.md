@@ -1,23 +1,23 @@
 # .WIM-Manager
-Utilidad script-paghettizada altamente editable para instalar Windows mediante im·genes .ESD/.WIM por red/PXE (sÛlo necesitas TFTP, SMB y DHCP).
-Es capaz de diferenciar entre equipos (UUID de la placa) por "whitelist", ofreciendo en funciÛn de esto diferentes im·genes y opciones de postinstalaciÛn.
+Utilidad script-paghettizada altamente editable para instalar Windows mediante im√°genes .ESD/.WIM por red/PXE (s√≥lo necesitas TFTP, SMB y DHCP).
+Es capaz de diferenciar entre equipos (UUID de la placa) por "whitelist", ofreciendo en funci√≥n de esto diferentes im√°genes y opciones de postinstalaci√≥n.
 Hecho con amor y apto para scriptkiddies como yo.
 
-# INFORMACI”N IMPORTANTE: ANTES DE EMPEZAR...
-En este repositorio, y por motivos obvios, no se incluyen los archivos "boot.wim", "boot.sdi", asÌ como los ejecutables "findstr.exe" y "timeout.exe". TambiÈn debes preparar el archivo "boot.wim" antes de poderlo utilizar mediante unos scripts automatizados que requieren hacerlo en Windows (pues se usa DISM).
+# INFORMACI√ìN IMPORTANTE: ANTES DE EMPEZAR...
+En este repositorio, y por motivos obvios, no se incluyen los archivos "boot.wim", "boot.sdi", as√≠ como los ejecutables "findstr.exe" y "timeout.exe". Tambi√©n debes preparar el archivo "boot.wim" antes de poderlo utilizar mediante unos scripts automatizados que requieren hacerlo en Windows (pues se usa DISM).
 
-Los archivos "findstr.exe" y "timeout.exe" se encuentran en cualquier instalaciÛn de Windows o bien dentro del archivo install.esd/install.wim (·brelo con 7-zip) dentro de "\Windows\System32\".
+Los archivos "findstr.exe" y "timeout.exe" se encuentran en cualquier instalaci√≥n de Windows o bien dentro del archivo install.esd/install.wim (recomendad√≠simo, y √°brelo con 7-zip) dentro de los directorios "\Windows\System32\" de cualquier √≠ndice.
 Estos deben introducirse en "\Espacio de trabajo para el boot.wim\Contenido a inyectar\windows\system32\".
 
-Los archivos "boot.wim" y "boot.sdi" se encuentran en "sources\" y "boot\" de cualquier medio de instalaciÛn de Windows 10 u 11.
-Mientras que el archivo "boot.sdi" puede ir directamente a la carpeta raÌz-compartida del servidor TFTP, el archivo "boot.wim" antes debe ser preparado.
-Para preparar el "boot.wim", debes colocarlo en "\Espacio de trabajo para el boot.wim\" y, como mÌnimo, aÒadir unos drivers ethernet en la carpeta "\Espacio de trabajo para el boot.wim\Drivers a inyectar", y ejecutar los 5 script ".BAT" en el orden establecido seg˙n el nombre de archivo que tienen establecido.
-Tras esto, debes mover el archivo a la carpeta raÌz-compartida del servidor TFTP.
+Los archivos "boot.wim" y "boot.sdi" se encuentran en "sources\" y "boot\" de cualquier medio de instalaci√≥n de Windows 10 u 11.
+Mientras que el archivo "boot.sdi" puede ir directamente a la carpeta ra√≠z-compartida del servidor TFTP, el archivo "boot.wim" antes debe ser preparado.
+Para preparar el "boot.wim", debes colocarlo en "\Espacio de trabajo para el boot.wim\" y, como m√≠nimo, a√±adir unos drivers ethernet en la carpeta "\Espacio de trabajo para el boot.wim\Drivers a inyectar", y ejecutar los 5 script ".BAT" en el orden establecido seg√∫n el nombre de archivo que tienen establecido.
+Tras esto, debes mover el archivo a la carpeta ra√≠z-compartida del servidor TFTP.
 
-Tanto el archivo "boot.ipxe" en la carpeta raÌz-compartida del servidor TFTP, como el archivo "Terraformador.bat" en \Espacio de trabajo para el boot.wim\Contenido a inyectar\" necesitan ser editados para incluir la IP del servidor TFTP (boot.ipxe), asÌ como la IP del servidor SMB, la ruta del recurso compartido, el usuario y su contraseÒa (Terraformador.bat).
+Tanto el archivo "boot.ipxe" en la carpeta ra√≠z-compartida del servidor TFTP, como el archivo "Terraformador.bat" en \Espacio de trabajo para el boot.wim\Contenido a inyectar\" necesitan ser editados para incluir la IP del servidor TFTP (boot.ipxe), as√≠ como la IP del servidor SMB, la ruta del recurso compartido, el usuario y su contrase√±a (Terraformador.bat).
 
-Por ˙ltimo, debes especificar en el servidor DHCP cu·l es el servidor TFTP y quÈ archivo debe ofrecer en base a la arquitectura del equipo cliente (y si tiene o no cargado IPXE).
-Por ejemplo, en mi caso (dnsmasq en un router Xiaomi ejecutando XiaoQiang), tuve que editar el archivo "/etc/dnsmasq.conf" e incluir las siguientes lÌneas al final:
+Por √∫ltimo, debes especificar en el servidor DHCP cu√°l es el servidor TFTP y qu√© archivo debe ofrecer en base a la arquitectura del equipo cliente (y si tiene o no cargado IPXE).
+Por ejemplo, en mi caso (dnsmasq en un router Xiaomi ejecutando XiaoQiang), tuve que editar el archivo "/etc/dnsmasq.conf" e incluir las siguientes l√≠neas al final:
 
 `dhcp-match=set:bios,option:client-arch,0`
 `dhcp-match=set:uefi7,option:client-arch,7`
@@ -30,23 +30,23 @@ Por ejemplo, en mi caso (dnsmasq en un router Xiaomi ejecutando XiaoQiang), tuve
 
 `dhcp-boot=tag:ipxe,boot.ipxe,192.168.1.250,192.168.1.250`
 
-Se recomienda el uso de "snponly-shim.efi", el cual carga "snponly.efi" aprovechando asÌ los drivers ethernet incluidos en la ROM/UEFI para el proceso temprano de arranque.
+Se recomienda el uso de "snponly-shim.efi", el cual carga "snponly.efi" aprovechando as√≠ los drivers ethernet incluidos en la ROM/UEFI para el proceso temprano de arranque.
 
 # Licencias y uso de software de terceros.
-Este repositorio utiliza componentes de terceros para facilitar el arranque por red (iPXE, WimBoot) asÌ como permitir su uso con Secure Boot (shim del repositorio de iPXE).
-De acuerdo con las licencias de software libre (GPL y BSD), se detalla a continuaciÛn la informaciÛn legal y la ubicaciÛn de los materiales correspondientes.
+Este repositorio utiliza componentes de terceros para facilitar el arranque por red (iPXE, WimBoot) as√≠ como permitir su uso con Secure Boot (shim del repositorio de iPXE).
+De acuerdo con las licencias de software libre (GPL y BSD), se detalla a continuaci√≥n la informaci√≥n legal y la ubicaci√≥n de los materiales correspondientes.
 
 ## 1. iPXE (ipxe.efi y snponly.efi).
-- **Licencia:** GNU General Public License versiÛn 2 (GPLv2).
+- **Licencia:** GNU General Public License versi√≥n 2 (GPLv2).
 - **Origen:** [https://github.com/ipxe/ipxe](https://github.com/ipxe/ipxe)
-- **Cumplimiento:** el cÛdigo fuente completo y sin modificaciones utilizado para generar el binario incluido se encuentra en este repositorio en: `Otros/src/ipxe-2.0.0.tar.gz`.
+- **Cumplimiento:** el c√≥digo fuente completo y sin modificaciones utilizado para generar el binario incluido se encuentra en este repositorio en: `Otros\c√≥digo fuente\ipxe-2.0.0.tar.gz`.
 
 ## 2. WimBoot (wimboot).
-- **Licencia:** GNU General Public License versiÛn 2 (GPLv2).
+- **Licencia:** GNU General Public License versi√≥n 2 (GPLv2).
 - **Origen:** [https://github.com/ipxe/wimboot](https://github.com/ipxe/wimboot)
-- **Cumplimiento:** el cÛdigo fuente completo y sin modificaciones utilizado para generar el binario incluido se encuentra en este repositorio en: `Otros/src/wimboot-2.9.0.tar.gz`.
+- **Cumplimiento:** el c√≥digo fuente completo y sin modificaciones utilizado para generar el binario incluido se encuentra en este repositorio en: `Otros\c√≥digo fuente\wimboot-2.9.0.tar.gz`.
 
 ## 3. Shim (shimx64.efi).
 - **Licencia:** BSD 2-Clause License.
 - **Origen:** [https://github.com/ipxe/shim](https://github.com/ipxe/shim)
-- **Cumplimiento:** Aunque la licencia BSD es permisiva, en favor de la transparencia y la reproducibilidad, se incluye el cÛdigo fuente correspondiente en: `Otros/src/shim-ipxe-16.1.tar.gz`.
+- **Cumplimiento:** Aunque la licencia BSD es permisiva, en favor de la transparencia y la reproducibilidad, se incluye el c√≥digo fuente correspondiente en: `Otros\c√≥digo fuente\shim-ipxe-16.1.tar.gz`.
