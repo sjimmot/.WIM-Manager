@@ -1,0 +1,25 @@
+#!ipxe
+
+set tiempodeespera 10000
+
+:inicio
+menu Arranque de red - Opciones:
+item --key w wimboot	Arrancar entorno de inst. en red.
+item --key c shell	Abrir consola de iPXE (shell).
+item --key e cancelar	Cancelar y retomar el orden de arranque normal.
+#choose --timeout ${menu-timeout} --default wimboot target && goto ${target}
+
+:wimboot
+kernel tftp://IP.DEL.SERVIDOR.TFTP/wimboot
+initrd tftp://IP.DEL.SERVIDOR.TFTP/boot.wim	boot.wim
+initrd tftp://IP.DEL.SERVIDOR.TFTP/boot.sdi	boot.sdi
+initrd tftp://IP.DEL.SERVIDOR.TFTP/bcd		bcd
+boot
+
+:shell
+echo "Con el comando 'exit' puedes volver al inicio. Suerte."
+shell
+goto inicio
+
+:cancelar
+exit

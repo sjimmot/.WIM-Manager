@@ -1,0 +1,2 @@
+select disk 5
+list partition

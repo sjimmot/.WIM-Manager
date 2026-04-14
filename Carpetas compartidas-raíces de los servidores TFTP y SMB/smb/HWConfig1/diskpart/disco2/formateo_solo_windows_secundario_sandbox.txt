@@ -1,0 +1,8 @@
+select disk 2
+online disk NOERR
+select partition 5
+remove NOERR
+format quick fs=ntfs label="Windows HD"
+assign letter=C
+list volume
+exit

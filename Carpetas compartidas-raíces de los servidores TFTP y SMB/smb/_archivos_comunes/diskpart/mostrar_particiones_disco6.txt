@@ -1,0 +1,2 @@
+select disk 6
+list partition

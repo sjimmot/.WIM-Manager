@@ -1,0 +1,22 @@
+select disk 8
+online disk NOERR
+select partition 1
+remove NOERR
+select partition 2
+remove NOERR
+select partition 3
+remove NOERR
+select partition 4
+remove NOERR
+select partition 5
+remove NOERR
+select partition 6
+remove NOERR
+select partition 7
+remove NOERR
+select partition 8
+remove NOERR
+select partition 9
+remove NOERR
+select partition 10
+remove NOERR

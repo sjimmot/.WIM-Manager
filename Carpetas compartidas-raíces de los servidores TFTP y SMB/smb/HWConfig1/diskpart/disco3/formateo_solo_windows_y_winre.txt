@@ -1,0 +1,12 @@
+select disk 3
+online disk NOERR
+select partition 3
+remove NOERR
+format quick fs=ntfs label="Windows RE"
+assign letter=R
+select partition 4
+remove NOERR
+format quick fs=ntfs label="Windows HD"
+assign letter=C
+list volume
+exit

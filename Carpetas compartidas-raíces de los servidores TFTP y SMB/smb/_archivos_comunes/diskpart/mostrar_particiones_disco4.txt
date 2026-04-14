@@ -1,0 +1,2 @@
+select disk 4
+list partition

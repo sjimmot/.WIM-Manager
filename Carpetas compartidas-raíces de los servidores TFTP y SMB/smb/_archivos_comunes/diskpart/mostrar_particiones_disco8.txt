@@ -1,0 +1,2 @@
+select disk 8
+list partition

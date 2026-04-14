@@ -1,0 +1,19 @@
+select disk 6
+online disk NOERR
+clean
+convert gpt
+create partition primary
+shrink minimum=1296
+format quick fs=ntfs label="Windows HD"
+assign letter=C
+create partition primary size=1024
+format quick fs=ntfs label="Windows RE"
+assign letter=R
+set id="de94bba4-06d1-4d40-a16a-bfd50179d6ac"
+gpt attributes=0x8000000000000001
+create partition msr size=16
+create partition efi size=256
+format quick fs=fat32 label=EFI
+assign letter=Z
+list volume
+exit

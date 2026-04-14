@@ -1,0 +1,12 @@
+select disk 2
+online disk NOERR
+select partition 1
+remove NOERR
+format quick fs=fat32 label="EFI"
+assign letter=Z
+select partition 4
+remove NOERR
+format quick fs=ntfs label="Windows HD"
+assign letter=C
+list volume
+exit
