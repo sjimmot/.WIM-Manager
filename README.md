@@ -11,7 +11,7 @@ Estos deben introducirse en "\Espacio de trabajo para el boot.wim\Contenido a in
 
 Los archivos "boot.wim" y "boot.sdi" se encuentran en "sources\" y "boot\" de cualquier medio de instalación de Windows 10 u 11.
 Mientras que el archivo "boot.sdi" puede ir directamente a la carpeta raíz-compartida del servidor TFTP, el archivo "boot.wim" antes debe ser preparado.
-Para preparar el "boot.wim", debes colocarlo en "\Espacio de trabajo para el boot.wim\" y, como mínimo, añadir unos drivers ethernet en la carpeta "\Espacio de trabajo para el boot.wim\Drivers a inyectar", y ejecutar los 5 script ".BAT" en el orden establecido según el nombre de archivo que tienen establecido.
+Para preparar el "boot.wim", debes colocarlo en "\Espacio de trabajo para el boot.wim\" y, como mínimo, añadir unos drivers ethernet en la carpeta "\Espacio de trabajo para el boot.wim\Drivers a inyectar", además de ejecutar los 5 script ".BAT" en el orden establecido según el nombre de archivo que tienen.
 Tras esto, debes mover el archivo a la carpeta raíz-compartida del servidor TFTP.
 
 Tanto el archivo "boot.ipxe" en la carpeta raíz-compartida del servidor TFTP, como el archivo "Terraformador.bat" en \Espacio de trabajo para el boot.wim\Contenido a inyectar\" necesitan ser editados para incluir la IP del servidor TFTP (boot.ipxe), así como la IP del servidor SMB, la ruta del recurso compartido, el usuario y su contraseña (Terraformador.bat).
