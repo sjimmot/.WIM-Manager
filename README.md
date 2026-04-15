@@ -1,6 +1,10 @@
 # .WIM-Manager
 Utilidad script-paghettizada altamente editable para instalar Windows mediante imágenes .ESD/.WIM por red/PXE (sólo necesitas TFTP, SMB y DHCP).
 Es capaz de diferenciar entre equipos (UUID de la placa) por "whitelist", ofreciendo en función de esto diferentes imágenes y opciones de postinstalación.
+
+También vale en caso de que simplemente busques montarte un medio de instalación para gobernarlos a todos; un BDXL/USB para encontrarlos,
+un BDXL/USB para atraerlos a todos y atarlos en las tinieblas de Microsoft.
+
 Hecho con amor y apto para scriptkiddies como yo.
 
 # INFORMACIÓN IMPORTANTE: ANTES DE EMPEZAR...
