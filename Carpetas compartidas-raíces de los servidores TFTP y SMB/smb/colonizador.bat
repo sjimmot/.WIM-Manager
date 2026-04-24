@@ -124,16 +124,18 @@ wpeutil reboot
 :: Primera parte verdaderamente compleja. Aquí se intenta encontrar la cabecera de turno extraida justo después del UUID en la lista superior. Dicha cabecera también se encuentra al lado del nombre de host final.
 set "whitelist=%unidad_de_activos%\whitelist.ini"
 
-if defined whitelist (
-	REM Usamos 'findstr' con el modificador /B (Begin) para buscar la línea que EMPIEZA
-	REM exactamente con el UUID local. El bucle solo se ejecuta si encuentra esa línea.
+if exist "%whitelist%" (
+	REM Se utiliza findstr con el modificador /b, entre otros, para buscar la línea que 
+	REM empieza exactamente con el UUID local. El bucle se ejecuta hasta que encuentra esa línea.
 	for /F "tokens=1,2* delims==" %%C in ('findstr /I /B /C:"%uuid_local%" "%whitelist%"') do (
         
-        REM Si entramos aquí, es que YA hemos encontrado el UUID. No hace falta comparar.
+        REM Si entramos aquí, es que YA hemos encontrado el UUID. No hace falta seguir.
+        REM Almacenamos el resultado en una variable nueva.
 		set "uuid_encontrado=1"
         
         REM %%C es el UUID (que ya sabemos que coincide)
         REM %%D es el resto de la línea (ej: HWConfig1,PC-DE-SAMU)
+        REM Le decimos con delims que en esa línea, los diferentes valores están delimitados por una coma.
 
 		for /F "tokens=1,2 delims=," %%E in ("%%D") do (
 			set "nombre_host=%%F"
@@ -149,7 +151,6 @@ if "%uuid_encontrado%"=="1" (
 		)
 	)
 )
-pause
 if "%uuid_encontrado%" EQU "1" goto uuid_encontrado_pero_sin_configuracion
 goto uuid_no_encontrado
 
